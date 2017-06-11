@@ -15,6 +15,11 @@
 #define SHELL_WA_SIZE   THD_WORKING_AREA_SIZE(2048)
 #define TEST_WA_SIZE    THD_WORKING_AREA_SIZE(256)
 
+#define VDD1_ON()   palSetPad(GPIOC,8)
+#define VDD2_ON()   palSetPad(GPIOC,9)
+#define VDD1_OFF()   palClearPad(GPIOC,8)
+#define VDD2_OFF()   palClearPad(GPIOC,9)
+
 uint8_t reset_flags = 0;
 extern thread_t *thdAD7124;
 
@@ -119,6 +124,16 @@ static void cmd_i2cWrite(BaseSequentialStream *chp, int argc, char *argv[])
 
 }
 
+static void cmd_Power(BaseSequentialStream *chp, int argc, char *argv[])
+{
+  if(argv > 0){
+    if(strcmp(argv[0],"ON") == 0){
+
+    }else if(strcmp(argv[0],"OFF") == 0){
+
+    }
+  }
+}
 
 static const ShellCommand commands[] = {
   {"mem", cmd_mem},
@@ -168,6 +183,11 @@ int main(void) {
   // enable usb bus
   palClearPad(GPIOA,15);
 //  palSetPad(GPIOA,15);
+
+  VDD1_ON();
+  VDD2_ON();
+  VDD1_OFF();
+  VDD2_OFF();
 
   while(1){
     if(!shelltp && (SDU1.config->usbp->state == USB_ACTIVE))

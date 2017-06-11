@@ -40,7 +40,7 @@ static const uint8_t usb_configuration_descriptor_data[32] = {
                          0x01,          /* bConfigurationValue.             */
                          5,             /* iConfiguration.                  */
                          0xC0,          /* bmAttributes (self powered).     */
-                         50),           /* bMaxPower (100mA).               */
+                         250),           /* bMaxPower (500mA).               */
   /* Interface Descriptor.*/
   USB_DESC_INTERFACE    (0x00,          /* bInterfaceNumber.                */
                          0x00,          /* bAlternateSetting.               */
